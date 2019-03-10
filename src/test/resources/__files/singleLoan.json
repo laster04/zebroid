@@ -1,0 +1,46 @@
+[
+  {
+	"id": 418933,
+	"url": "https://app.zonky.cz/loan/418933",
+	"name": "Výměna vozového parku",
+	"story": "Dobrý den investoři, rozhodl jsem se pro omlazení svého vozového parku. Když jsem prošel několika málo autobazarů a viděl spousty fotek na internetu. Zjistil jsem že tudy cesta nepovede a že foto a realita je velmi odlišná. Proto jsem se rozhodl požádat Zonky o půjčku a koupit auto po operativním leasingu. Děkuji všem kdo mi pomůžou zafinancovat mé \"nové\" auto.\nP.S. Jelikož také investuji na Zonky vím že malý úrok a krátká doba splácení je špatná kombinace,ale tentokrát udělejte prosím výjimku.Děkuji moc všem.",
+	"purpose": "1",
+	"photos": [
+	  {
+		"name": "auto-moto-2-8b26ebda9eff149519862ab44e34e1a4.jpg",
+		"url": "/loans/418933/photos/51565"
+	  }
+	],
+	"userId": 399989,
+	"nickName": "zonky399989",
+	"termInMonths": 46,
+	"interestRate": 0.059900,
+	"revenueRate": 0.049900,
+	"annuity": 4984.00,
+	"premium": null,
+	"rating": "AAA",
+	"topped": false,
+	"amount": 200000.00,
+	"remainingInvestment": 69000.00,
+	"investmentRate": 0.655,
+	"covered": false,
+	"reservedAmount": 17400.00,
+	"zonkyPlusAmount": 0.00,
+	"datePublished": "2019-03-08T15:07:00.597+01:00",
+	"published": true,
+	"deadline": "2019-03-10T14:48:07.927+01:00",
+	"myOtherInvestments": null,
+	"borrowerRelatedInvestmentInfo": null,
+	"investmentsCount": 170,
+	"questionsCount": 1,
+	"region": "4",
+	"mainIncomeType": "EMPLOYMENT",
+	"questionsAllowed": false,
+	"activeLoansCount": 0,
+	"insuranceActive": false,
+	"insuranceHistory": [],
+	"fastcash": true,
+	"multicash": true,
+	"annuityWithInsurance": 4984.00
+  }
+]

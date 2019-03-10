@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: zebroid
+    url: https://github.com/laster04
+zonky:
+  host: 'https://api.zonky.cz/'
+  path-loans: 'loans/marketplace'
+  batch-size: 500
+  user-agent: ${spring.application.name}/@version@ (${spring.application.url}})
+feign:
+  client:
+    config:
+      loans:
+        connectTimeout: 5000
