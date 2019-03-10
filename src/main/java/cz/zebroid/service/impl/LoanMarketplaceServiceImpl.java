@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -45,8 +46,8 @@ public class LoanMarketplaceServiceImpl implements LoanMarketplaceService {
 	
 	@Override
 	public void downloadMarketpalceLoans() {
-		Date lastCall = memLastProcessInfoService.getLastProcessTime();
-		Date lastDatePublished = null;
+		ZonedDateTime lastCall = memLastProcessInfoService.getLastProcessTime();
+		ZonedDateTime lastDatePublished = null;
 		int totalRecordsNum;
 		int processedRecords = 0;
 		int page = 0;
@@ -55,9 +56,8 @@ public class LoanMarketplaceServiceImpl implements LoanMarketplaceService {
 			if (Objects.nonNull(lastCall)) {
 				logger.info("Download loans after {}", lastCall);
 				responseEntity = zonkyClient
-						.getMarketplaceLoansByDatePublishedGT(page, responseBatchSize, LOANS_ORDER, lastCall);
+						.getMarketplaceLoansByDatePublishedGT(page, responseBatchSize, LOANS_ORDER, lastCall.toOffsetDateTime());
 			} else {
-				logger.info("Download first page of loans");
 				responseEntity = zonkyClient.getMarketplaceLoans(page, responseBatchSize, LOANS_ORDER);
 			}
 			if (responseEntity.getBody() != null && !responseEntity.getBody().isEmpty()) {

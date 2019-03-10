@@ -3,6 +3,8 @@ package cz.zebroid.service.impl;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
 import java.util.Calendar;
 
 import cz.zebroid.service.MemLastProcessInfoService;
@@ -18,18 +20,16 @@ public class MemLastProcessInfoServiceImplTest {
 	
 	@Test
 	public void processInfoTimeTest() {
-		Calendar now = Calendar.getInstance();
-		Calendar cal = (Calendar) now.clone();
+		ZonedDateTime now = ZonedDateTime.now(ZoneOffset.UTC);
 		
 		Assertions.assertThat(memLastProcessInfoService.getLastProcessTime()).isNull();
 		
-		memLastProcessInfoService.setLastProcessTime(cal.getTime());
+		memLastProcessInfoService.setLastProcessTime(now);
 		
-		Assertions.assertThat(memLastProcessInfoService.getLastProcessTime()).isEqualTo(now.getTime());
+		Assertions.assertThat(memLastProcessInfoService.getLastProcessTime()).isEqualTo(now);
 		
-		cal.add(Calendar.MINUTE, 5);
-		memLastProcessInfoService.setLastProcessTime(cal.getTime());
+		memLastProcessInfoService.setLastProcessTime(now.plusMinutes(10L));
 		
-		Assertions.assertThat(memLastProcessInfoService.getLastProcessTime()).isAfter(now.getTime());
+		Assertions.assertThat(memLastProcessInfoService.getLastProcessTime()).isAfter(now);
 	}
 }

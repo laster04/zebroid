@@ -23,5 +23,4 @@ public class Zebroid {
 			logger.error("Can't start Zebroid", e);
 		}
 	}
-	
 }

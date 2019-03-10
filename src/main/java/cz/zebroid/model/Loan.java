@@ -1,5 +1,6 @@
 package cz.zebroid.model;
 
+import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class Loan {
 	private Integer remainingInvestment;
 	private Double investmentRate;
 	private Boolean covered;
-	private Date datePublished;
+	private ZonedDateTime datePublished;
 	private Boolean published;
 	private Date deadline;
 	private Integer investmentsCount;
@@ -150,11 +151,11 @@ public class Loan {
 		this.covered = covered;
 	}
 	
-	public Date getDatePublished() {
+	public ZonedDateTime getDatePublished() {
 		return datePublished;
 	}
 	
-	public void setDatePublished(Date datePublished) {
+	public void setDatePublished(ZonedDateTime datePublished) {
 		this.datePublished = datePublished;
 	}
 	
@@ -226,10 +227,10 @@ public class Loan {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder("{");
-		sb.append("\"id:\"").append(getId()).append(",");
-		sb.append("\"datePublish:\"").append("\"").append(getDatePublished()).append("\"").append(",");
-		sb.append("\"ref:\"").append("\"").append(getUrl()).append("\"").append(",");
-		sb.append("\"rating:\"").append("\"").append(getRating()).append("\"");
+		sb.append("\"id\":").append(getId()).append(",");
+		sb.append("\"datePublish\":").append("\"").append(getDatePublished()).append("\"").append(",");
+		sb.append("\"ref\":").append("\"").append(getUrl()).append("\"").append(",");
+		sb.append("\"rating\":").append("\"").append(getRating()).append("\"");
 		sb.append("}");
 		return sb.toString();
 	}

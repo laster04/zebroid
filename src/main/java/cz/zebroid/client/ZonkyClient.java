@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.Date;
+import java.time.OffsetDateTime;
 import java.util.List;
 
 import cz.zebroid.model.Loan;
@@ -16,14 +16,16 @@ import cz.zebroid.model.Loan;
 public interface ZonkyClient {
 	
 	@RequestMapping(method = RequestMethod.GET, value = "${zonky.path-loans}")
-	ResponseEntity<List<Loan>> getMarketplaceLoans(@RequestHeader("X-Page") int page,
+	ResponseEntity<List<Loan>> getMarketplaceLoans(
+			@RequestHeader("X-Page") int page,
 			@RequestHeader("X-Size") int pageSize,
 			@RequestHeader("X-Order") String order);
 	
 	@RequestMapping(method = RequestMethod.GET, value = "${zonky.path-loans}")
-	ResponseEntity<List<Loan>> getMarketplaceLoansByDatePublishedGT(@RequestHeader("X-Page") int page,
+	ResponseEntity<List<Loan>> getMarketplaceLoansByDatePublishedGT(
+			@RequestHeader("X-Page") int page,
 			@RequestHeader("X-Size") int pageSize,
 			@RequestHeader("X-Order") String order,
-			@RequestParam("datePublished__gt") Date datePublish);
+			@RequestParam("datePublished__gt") OffsetDateTime datePublish);
 	
 }

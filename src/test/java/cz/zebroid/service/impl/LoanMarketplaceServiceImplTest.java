@@ -1,6 +1,7 @@
 package cz.zebroid.service.impl;
 
 import static cz.zebroid.service.impl.LoanMarketplaceServiceImpl.LOANS_ORDER;
+import static java.time.ZonedDateTime.now;
 import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.times;
@@ -22,8 +23,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.List;
 
 import cz.zebroid.client.ZonkyClient;
@@ -50,15 +52,17 @@ public class LoanMarketplaceServiceImplTest {
 	private ArgumentCaptor<List<Loan>> loansCaptor;
 	
 	private LoanMarketplaceServiceImpl loanMarketplaceServiceMock;
+	private TestObjectFactory testObjectFactory;
 	
 	@Before
 	public void before(){
 		loanMarketplaceServiceMock = new LoanMarketplaceServiceImpl(zonkyClient, consolePrintProcessor,
 				memLastProcessInfoService);
+		testObjectFactory = new TestObjectFactory();
 	}
 	
 	@Test
-	public void processMarketplaceLoans() {
+	public void processMarketplaceLoansTest() {
 		when(zonkyClient.getMarketplaceLoans(0, responseBatchSize, LOANS_ORDER))
 				.thenReturn(createResponseEntity(3, createLoan(1L, 8)));
 		
@@ -95,11 +99,11 @@ public class LoanMarketplaceServiceImplTest {
 	}
 	
 	private Loan createLoan(Long id, int minusMinutesDatePublished){
-		Calendar cal = Calendar.getInstance();
-		cal.add(Calendar.MINUTE, -minusMinutesDatePublished);
+		ZonedDateTime zonedDateTime = now(ZoneOffset.UTC);
+		zonedDateTime.minusMinutes(minusMinutesDatePublished);
 		Loan loan = new Loan();
 		loan.setId(id);
-		loan.setDatePublished(cal.getTime());
+		loan.setDatePublished(zonedDateTime);
 		return loan;
 	}
 }
