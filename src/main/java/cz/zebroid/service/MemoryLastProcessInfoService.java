@@ -1,11 +1,10 @@
 package cz.zebroid.service;
 
 import java.time.ZonedDateTime;
-import java.util.Date;
 
 import javax.validation.constraints.NotNull;
 
-public interface MemLastProcessInfoService {
+public interface MemoryLastProcessInfoService {
 	
 	void setLastProcessTime(@NotNull ZonedDateTime recordTime);
 	

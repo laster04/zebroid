@@ -20,7 +20,7 @@ public class Zebroid {
 		try {
 			SpringApplication.run(Zebroid.class, args);
 		} catch (Exception e) {
-			logger.error("Can't start Zebroid", e);
+			logger.error("Can't start Zebroid test loan API", e);
 		}
 	}
 }

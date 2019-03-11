@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.ZonedDateTime;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -17,7 +16,7 @@ import cz.zebroid.client.ZonkyClient;
 import cz.zebroid.model.Loan;
 import cz.zebroid.processor.ConsolePrintProcessor;
 import cz.zebroid.service.LoanMarketplaceService;
-import cz.zebroid.service.MemLastProcessInfoService;
+import cz.zebroid.service.MemoryLastProcessInfoService;
 
 @Service
 public class LoanMarketplaceServiceImpl implements LoanMarketplaceService {
@@ -35,18 +34,18 @@ public class LoanMarketplaceServiceImpl implements LoanMarketplaceService {
 	
 	private final ConsolePrintProcessor consolePrintProcessor;
 	
-	private final MemLastProcessInfoService memLastProcessInfoService;
+	private final MemoryLastProcessInfoService memoryLastProcessInfoService;
 	
 	public LoanMarketplaceServiceImpl(ZonkyClient zonkyClient, ConsolePrintProcessor consolePrintProcessor,
-			MemLastProcessInfoService memLastProcessInfoService) {
+			MemoryLastProcessInfoService memoryLastProcessInfoService) {
 		this.zonkyClient = zonkyClient;
 		this.consolePrintProcessor = consolePrintProcessor;
-		this.memLastProcessInfoService = memLastProcessInfoService;
+		this.memoryLastProcessInfoService = memoryLastProcessInfoService;
 	}
 	
 	@Override
-	public void downloadMarketpalceLoans() {
-		ZonedDateTime lastCall = memLastProcessInfoService.getLastProcessTime();
+	public void downloadMarketplaceLoans() {
+		ZonedDateTime lastCall = memoryLastProcessInfoService.getLastProcessTime();
 		ZonedDateTime lastDatePublished = null;
 		int totalRecordsNum;
 		int processedRecords = 0;
@@ -71,7 +70,7 @@ public class LoanMarketplaceServiceImpl implements LoanMarketplaceService {
 			logger.info("Processed records [{}] of total [{}]", processedRecords, totalRecordsNum);
 		} while (processedRecords < totalRecordsNum);
 		if (Objects.nonNull(lastDatePublished)) {
-			memLastProcessInfoService.setLastProcessTime(lastDatePublished);
+			memoryLastProcessInfoService.setLastProcessTime(lastDatePublished);
 		}
 	}
 	

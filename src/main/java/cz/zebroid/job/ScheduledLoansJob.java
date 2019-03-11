@@ -8,20 +8,20 @@ import org.springframework.stereotype.Component;
 import cz.zebroid.service.LoanMarketplaceService;
 
 @Component
-public class LoansScheduledJob {
+public class ScheduledLoansJob {
 	
-	private static final Logger logger = LoggerFactory.getLogger(LoansScheduledJob.class);
+	private static final Logger logger = LoggerFactory.getLogger(ScheduledLoansJob.class);
 	
 	private final LoanMarketplaceService loanMarketplaceService;
 	
-	public LoansScheduledJob(LoanMarketplaceService loanMarketplaceService) {
+	public ScheduledLoansJob(LoanMarketplaceService loanMarketplaceService) {
 		this.loanMarketplaceService = loanMarketplaceService;
 	}
 	
 	@Scheduled(fixedRate = 5 * 60 * 1000)
 	public void downloadLoans(){
-		logger.info("Start download new loans {}");
-		loanMarketplaceService.downloadMarketpalceLoans();
+		logger.info("Start download new loans");
+		loanMarketplaceService.downloadMarketplaceLoans();
 		logger.info("End download new loans");
 	}
 }

@@ -31,7 +31,7 @@ import java.util.List;
 import cz.zebroid.client.ZonkyClient;
 import cz.zebroid.model.Loan;
 import cz.zebroid.processor.ConsolePrintProcessor;
-import cz.zebroid.service.MemLastProcessInfoService;
+import cz.zebroid.service.MemoryLastProcessInfoService;
 
 @RunWith(MockitoJUnitRunner.class)
 public class LoanMarketplaceServiceImplTest {
@@ -46,19 +46,17 @@ public class LoanMarketplaceServiceImplTest {
 	private ConsolePrintProcessor consolePrintProcessor;
 	
 	@Mock
-	private MemLastProcessInfoService memLastProcessInfoService;
+	private MemoryLastProcessInfoService memoryLastProcessInfoService;
 	
 	@Captor
 	private ArgumentCaptor<List<Loan>> loansCaptor;
 	
 	private LoanMarketplaceServiceImpl loanMarketplaceServiceMock;
-	private TestObjectFactory testObjectFactory;
 	
 	@Before
 	public void before(){
 		loanMarketplaceServiceMock = new LoanMarketplaceServiceImpl(zonkyClient, consolePrintProcessor,
-				memLastProcessInfoService);
-		testObjectFactory = new TestObjectFactory();
+				memoryLastProcessInfoService);
 	}
 	
 	@Test
@@ -74,7 +72,7 @@ public class LoanMarketplaceServiceImplTest {
 		
 		doNothing().when(consolePrintProcessor).run(anyList());
 		
-		loanMarketplaceServiceMock.downloadMarketpalceLoans();
+		loanMarketplaceServiceMock.downloadMarketplaceLoans();
 		
 		verify(zonkyClient, times(1))
 				.getMarketplaceLoans(0, responseBatchSize, LOANS_ORDER);

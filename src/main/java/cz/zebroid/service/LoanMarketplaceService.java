@@ -2,5 +2,5 @@ package cz.zebroid.service;
 
 public interface LoanMarketplaceService {
 	
-	void downloadMarketpalceLoans();
+	void downloadMarketplaceLoans();
 }
