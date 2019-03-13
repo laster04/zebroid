@@ -8,7 +8,7 @@ zonky:
   batch-size: 500
   init-max-batch-size: 1000
   user-agent: ${spring.application.name}/@version@ (${spring.application.url}})
-  loans-scheduler: '0 */3 * * * *'
+  loans-scheduler: '0 */5 * * * *'
   loans-scheduler-fixrate: 5 * 60 * 1000
 feign:
   client:
