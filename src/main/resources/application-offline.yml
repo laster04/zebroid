@@ -1,3 +1,9 @@
+spring:
+  main:
+    banner_mode: 'OFF'
+
 zonky:
   host: 'http://127.0.0.1:9091/'
+  batch-size: 1
+  init-max-batch-size: 1000
   user-agent: ${spring.application.name}/0.1 (${spring.application.url}})

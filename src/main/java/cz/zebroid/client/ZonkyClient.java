@@ -12,6 +12,9 @@ import java.util.List;
 
 import cz.zebroid.model.Loan;
 
+/**
+ * Define Feign request to Zonky API @see{https://api.zonky.cz/loans/marketplace}
+ */
 @FeignClient(value = "loans", url = "${zonky.host}")
 public interface ZonkyClient {
 	

@@ -1,10 +1,13 @@
 package cz.zebroid.model;
 
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 
 public class Loan {
+	
+	private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy - H:mm:ss ");
 	
 	private Long id;
 	private String url;
@@ -226,12 +229,12 @@ public class Loan {
 	@SuppressWarnings("StringBufferReplaceableByString")
 	@Override
 	public String toString() {
-		StringBuilder sb = new StringBuilder("{");
-		sb.append("\"id\":").append(getId()).append(",");
-		sb.append("\"datePublish\":").append("\"").append(getDatePublished()).append("\"").append(",");
-		sb.append("\"ref\":").append("\"").append(getUrl()).append("\"").append(",");
-		sb.append("\"rating\":").append("\"").append(getRating()).append("\"");
-		sb.append("}");
+		StringBuilder sb = new StringBuilder("\n");
+		sb.append("-- ").append(getName()).append(" --");
+		sb.append("\n");
+		sb.append("id: ").append(getId()).append(", datePublish: ").append(getDatePublished().format(formatter))
+				.append("\n");
+		sb.append("ref: ").append(getUrl()).append(", rating: ").append(getRating());
 		return sb.toString();
 	}
 }

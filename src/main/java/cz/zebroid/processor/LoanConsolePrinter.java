@@ -8,12 +8,15 @@ import java.util.List;
 
 import cz.zebroid.model.Loan;
 
+/**
+ * Print loans to console screen
+ */
 @Component
-public class ConsolePrintProcessor {
+public class LoanConsolePrinter {
 	
-	private static final Logger logger = LoggerFactory.getLogger(ConsolePrintProcessor.class);
+	private static final Logger logger = LoggerFactory.getLogger(LoanConsolePrinter.class);
 	
-	public void run(List<Loan> loans){
+	public void print(List<Loan> loans) {
 		logger.info("Process {} loans", loans.size());
 		loans.forEach(System.out::println);
 	}

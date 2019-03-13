@@ -1,6 +1,11 @@
 package cz.zebroid.service;
 
+import java.time.ZonedDateTime;
+import java.util.List;
+
+import cz.zebroid.model.Loan;
+
 public interface LoanMarketplaceService {
 	
-	void downloadMarketplaceLoans();
+	List<Loan> downloadMarketplaceLoans(ZonedDateTime lastCall);
 }

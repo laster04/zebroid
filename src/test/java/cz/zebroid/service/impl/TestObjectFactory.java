@@ -5,6 +5,7 @@ import static com.github.tomakehurst.wiremock.client.WireMock.equalTo;
 import static com.github.tomakehurst.wiremock.client.WireMock.get;
 import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlPathMatching;
+import static java.time.ZonedDateTime.now;
 
 import com.github.tomakehurst.wiremock.client.MappingBuilder;
 
@@ -13,9 +14,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 
+import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
+
+import cz.zebroid.model.Loan;
 
 @Component
 public class TestObjectFactory {
@@ -29,16 +33,23 @@ public class TestObjectFactory {
 		if(Objects.nonNull(dateTime)){
 			mappingBuilder.withQueryParam("datePublished__gt", equalTo(DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(dateTime)));
 		}
-		
 		stubFor(mappingBuilder.willReturn(aResponse()
 				.withStatus(HttpStatus.OK.value())
 				.withHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
 				.withBodyFile(file)
 		));
-		
 	}
 	
 	public void prepareMockLoans(int page, int batchSize, String file) {
 		this.prepareMockLoans(page, batchSize, file, null);
+	}
+	
+	public Loan createLoan(Long id, int minusMinutesDatePublished) {
+		ZonedDateTime zonedDateTime = now(ZoneOffset.UTC);
+		zonedDateTime.minusMinutes(minusMinutesDatePublished);
+		Loan loan = new Loan();
+		loan.setId(id);
+		loan.setDatePublished(zonedDateTime);
+		return loan;
 	}
 }
