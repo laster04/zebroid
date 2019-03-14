@@ -36,7 +36,7 @@ public class ScheduledLoansJob {
 		this.loanConsolePrinter = loanConsolePrinter;
 	}
 	
-	@Scheduled(cron = "${zonky.loans-scheduler}")
+	@Scheduled(fixedRateString = "${zonky.loans-scheduler-fixrate}")
 	public void checkAndReportNewLoans() {
 		logger.info("Start download new loans");
 		
