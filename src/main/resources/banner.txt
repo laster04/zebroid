@@ -1,0 +1,13 @@
+${Ansi.BLUE}                  ________  _____________
+${Ansi.RED}                 |_   _| \ | |  ____/ __ \
+${Ansi.GREEN}                   | | |  \| | |__ | |  | |
+${Ansi.BLUE}                   | | | . ` |  __|| |  | |
+${Ansi.RED}                  _| |_| |\  | |   | |__| |
+${Ansi.BLUE}                 |_____|_| \_|_|    \____/
+
+${Ansi.GREEN} When you start application the scheduled job try every fifth minutes download new loans from Zonky marketplace API https://api.zonky.cz/loans/marketplace.
+${Ansi.GREEN} Except the first start every job will try download only latest loans after last processed loan.
+${Ansi.GREEN} The first start download first batch of loans, the size of batch is configured in application.yml.
+
+
+${Ansi.RED} :: Spring Boot${spring-boot.formatted-version} :: ${Ansi.DEFAULT}
