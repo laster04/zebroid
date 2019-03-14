@@ -1,5 +1,5 @@
 # Zebroid
-## Simple martketplace clien for process new loans
+## Simple martketplace client for process new loans
 Simple java bot checking new loans in marketplace
 
 When you start application the scheduled job try every fifth minutes download new loans from  **Zonky marketplace API** [https://api.zonky.cz/loans/marketplace](https://api.zonky.cz/loans/marketplace). 
@@ -9,8 +9,6 @@ Downloaded loans are printed in console.
  > -- Na rekonstrukci -- \
    id: 420145, datePublish: 12-03-2019 - 19:34:06 \
    ref: https://app.zonky.cz/loan/420145, rating: AAAAA
-
-If you want 
 
 #### Used technology
  - java 8
