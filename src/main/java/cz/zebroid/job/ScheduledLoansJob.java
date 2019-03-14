@@ -45,6 +45,7 @@ public class ScheduledLoansJob {
 			Collections.reverse(loanList);
 			loanConsolePrinter.print(loanList);
 			lastCall = loanList.get(loanList.size() - 1).getDatePublished();
+			logger.info("Reported {} new loans", loanList.size());
 		}
 		logger.info("End download new loans");
 	}

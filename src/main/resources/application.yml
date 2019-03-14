@@ -5,8 +5,8 @@ spring:
 zonky:
   host: 'https://api.zonky.cz/'
   path-loans: 'loans/marketplace'
-  batch-size: 500
-  init-max-batch-size: 1000
+  batch-size: 20
+  init-max-batch-size: 100
   user-agent: ${spring.application.name}/@version@ (${spring.application.url}})
   loans-scheduler: '0 */5 * * * *'
   loans-scheduler-fixrate: 5 * 60 * 1000

@@ -7,5 +7,11 @@ import cz.zebroid.model.Loan;
 
 public interface LoanMarketplaceService {
 	
-	List<Loan> downloadMarketplaceLoans(ZonedDateTime lastCall);
+	/**
+	 * Method call marketplace API and download loans
+	 *
+	 * @param lastDatePublishLoan time of last published loans in Zonky marketplace API
+	 * @return List of loans
+	 */
+	List<Loan> downloadMarketplaceLoans(ZonedDateTime lastDatePublishLoan);
 }

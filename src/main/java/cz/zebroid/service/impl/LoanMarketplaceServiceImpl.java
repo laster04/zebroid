@@ -47,18 +47,18 @@ public class LoanMarketplaceServiceImpl implements LoanMarketplaceService {
 	}
 	
 	@Override
-	public List<Loan> downloadMarketplaceLoans(ZonedDateTime lastCall) {
+	public List<Loan> downloadMarketplaceLoans(ZonedDateTime lastDatePublishLoan) {
 		int totalRecordsNum;
 		int processedRecords = 0;
 		int page = 0;
 		List<Loan> returnLoans = new ArrayList<>();
 		ResponseEntity<List<Loan>> responseEntity;
 		do {
-			if (Objects.nonNull(lastCall)) {
-				logger.info("Download loans after {}", lastCall.format(formatter));
+			if (Objects.nonNull(lastDatePublishLoan)) {
+				logger.info("Download loans after {}", lastDatePublishLoan.format(formatter));
 				responseEntity = zonkyClient
 						.getMarketplaceLoansByDatePublishedGT(page, responseBatchSize, LOANS_ORDER,
-								lastCall.toOffsetDateTime());
+								lastDatePublishLoan.toOffsetDateTime());
 			} else {
 				responseEntity = zonkyClient.getMarketplaceLoans(page, responseBatchSize, LOANS_ORDER);
 			}
@@ -73,7 +73,7 @@ public class LoanMarketplaceServiceImpl implements LoanMarketplaceService {
 			page++;
 			totalRecordsNum = getTotalRecordsCount(responseEntity);
 			logger.info("Processed records [{}] of total [{}]", processedRecords, totalRecordsNum);
-			if (Objects.isNull(lastCall) && processedRecords >= initMaxBatchSize) {
+			if (Objects.isNull(lastDatePublishLoan) && processedRecords >= initMaxBatchSize) {
 				break;
 			}
 		} while (processedRecords < totalRecordsNum);
